@@ -1,11 +1,11 @@
-import { Task } from "@app/types/tasksTypes";
+import { Task } from '@app/types/tasksTypes';
 
 export enum ActionType {
-  ADD = "ADD",
-  CHANGE = "CHANGE",
-  REMOVE = "REMOVE",
-  TOGGLE = "TOGGLE",
-  EDIT = "EDIT",
+  ADD = 'ADD',
+  CHANGE = 'CHANGE',
+  REMOVE = 'REMOVE',
+  TOGGLE = 'TOGGLE',
+  EDIT = 'EDIT',
 }
 
 export type ActionStringPayload = {

@@ -1,5 +1,5 @@
-import { State } from "@app/types/stateTypes";
-import { Action, ActionType } from "@app/types/actionTypes";
+import { State } from '@app/types/stateTypes';
+import { Action, ActionType } from '@app/types/actionTypes';
 
 export const taskReducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -45,6 +45,6 @@ export const taskReducer = (state: State, action: Action): State => {
       };
     }
     default:
-      throw new Error("Unexpected action");
+      throw new Error('Unexpected action');
   }
 };

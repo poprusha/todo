@@ -29,6 +29,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'max-len': ['error', { 'code': 120 }],
     'newline-before-return': 2,
+    'quotes': ['error', 'single', { 'allowTemplateLiterals': false }],
     '@typescript-eslint/prefer-readonly': ['error']
   },
 };
