@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["DOM", "ES2020"],
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "jsx": "react",
+    "strict": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "moduleResolution": "Node",
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@app/*": ["./src/*"]
+    },
+  },
+  "exclude": ["node_modules", "dist"],
+}
