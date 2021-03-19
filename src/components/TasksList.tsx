@@ -1,37 +1,35 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 
 import { ActionType } from '@app/types/actionTypes';
-import { Task } from '@app/types/tasksTypes';
-import { ContextApp } from '@app/App';
-import { ContextState } from '@app/types/stateTypes';
+import { Todo, AppState } from '@app/types/tasksTypes';
+import { useDispatch, useSelector } from 'react-redux';
 
 const TasksList: FC = () => {
-  const { state, changeState } = useContext(ContextApp) as ContextState;
+  const dispatch = useDispatch();
+  const state: AppState = useSelector((state: AppState) => state);
 
-  const removeTask = (task: Task) => {
-    changeState({ type: ActionType.REMOVE, payload: task });
+  const removeTask = (task: Todo) => {
+    dispatch({ type: ActionType.REMOVE, payload: task });
   };
 
-  const toggleTask = (task: Task) => {
-    changeState({ type: ActionType.TOGGLE, payload: task });
+  const toggleTask = (task: Todo) => {
+    dispatch({ type: ActionType.TOGGLE, payload: task });
   };
 
   return (
-    <>
-      <ul>
-        {state.tasks.map((task, i) => (
-          <li key={i} className={task.isDone ? 'ready' : ''}>
-            <label>
-              <input type="checkbox" onChange={() => toggleTask(task)} checked={task.isDone} />
-            </label>
-            <div className="task-name">{task.name}</div>
-            <button className="remove-button" onClick={() => removeTask(task)}>
-              X
-            </button>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {state.todos.map((todo, i) => (
+        <li key={i} className={todo.isDone ? 'ready' : ''}>
+          <label>
+            <input type="checkbox" onChange={() => toggleTask(todo)} checked={todo.isDone} />
+          </label>
+          <div className="task-name">{todo.name}</div>
+          <button className="remove-button" onClick={() => removeTask(todo)}>
+            X
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 };
 

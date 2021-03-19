@@ -1,7 +1,9 @@
-export type Task = {
+export type Todo = {
   name: string;
   isDone: boolean;
   isEdited: boolean;
 };
 
-export type Tasks = Task[];
+export type AppState = {
+  todos: Todo[];
+};

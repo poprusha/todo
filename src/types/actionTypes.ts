@@ -1,21 +1,20 @@
-import { Task } from '@app/types/tasksTypes';
+import { Todo } from '@app/types/tasksTypes';
 
 export enum ActionType {
   ADD = 'ADD',
-  CHANGE = 'CHANGE',
   REMOVE = 'REMOVE',
   TOGGLE = 'TOGGLE',
   EDIT = 'EDIT',
 }
 
 export type ActionStringPayload = {
-  type: ActionType.ADD | ActionType.CHANGE;
+  type: ActionType.ADD;
   payload: string;
 };
 
 export type ActionObjectPayload = {
   type: ActionType.REMOVE | ActionType.TOGGLE | ActionType.EDIT;
-  payload: Task;
+  payload: Todo;
 };
 
 export type Action = ActionStringPayload | ActionObjectPayload;
