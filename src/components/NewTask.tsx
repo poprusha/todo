@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { Input, Button } from '@material-ui/core/';
 
 import { ActionType } from '@app/types/actionTypes';
 import { useDispatch } from 'react-redux';
@@ -7,24 +8,26 @@ const NewTask: FC = () => {
   const dispatch = useDispatch();
   const [newTask, setNewTask] = useState('');
 
-  const updateInpute = (): void => {
+  const updateInput = (): void => {
     setNewTask('');
   };
 
   const addTask = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     dispatch({ type: ActionType.ADD, payload: newTask });
-    updateInpute();
+    updateInput();
   };
 
-  const changeTask = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeTask = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setNewTask(event.target.value);
   };
 
   return (
     <form onSubmit={addTask}>
-      <input type="text" onChange={changeTask} value={newTask} />
-      <button type="submit">Add a task</button>
+      <Input type="text" onChange={changeTask} value={newTask} color="primary" placeholder="Add your task..." />
+      <Button type="submit" color="primary" variant="contained">
+        Add a task
+      </Button>
     </form>
   );
 };

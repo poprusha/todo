@@ -1,7 +1,9 @@
 export type Todo = {
+  id: string;
   name: string;
   isDone: boolean;
-  isEdited: boolean;
+  isEdit: boolean;
+  date: string;
 };
 
 export type AppState = {
