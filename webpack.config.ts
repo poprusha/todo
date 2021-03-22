@@ -6,7 +6,7 @@ module.exports = {
   context: path.join(__dirname, './'),
   mode: 'development',
   devServer: {
-    port: 3000,
+    port: 3001,
   },
   resolve: {
     alias: {

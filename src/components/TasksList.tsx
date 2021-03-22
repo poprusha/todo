@@ -27,14 +27,18 @@ const TasksList: FC = () => {
   };
 
   const toggleEditTask = (task: Todo): void => {
-    dispatch({ type: ActionType.EDIT, payload: task });
+    if (task.isDone) {
+      return;
+    } else {
+      dispatch({ type: ActionType.EDIT, payload: task });
+    }
   };
 
   return (
     <List>
       {state.todos.map((todo) => (
         <Card key={todo.id}>
-          <CardContent>
+          <CardContent style={{ opacity: todo.isDone ? '0.5' : '1' }}>
             {todo.isEdit ? (
               <Input
                 type="text"
@@ -47,7 +51,7 @@ const TasksList: FC = () => {
               <Typography
                 gutterBottom
                 variant="h5"
-                onClick={!todo.isDone ? () => toggleEditTask(todo) : () => null}
+                onClick={() => toggleEditTask(todo)}
                 style={{ textDecoration: todo.isDone ? 'line-through' : 'none' }}
               >
                 {todo.name}
@@ -59,13 +63,7 @@ const TasksList: FC = () => {
           </CardContent>
           <CardActions>
             <Checkbox onChange={() => toggleCompleteTask(todo)} checked={todo.isDone} color="primary" />
-            <Button
-              className="remove-button"
-              onClick={() => removeTask(todo)}
-              color="secondary"
-              startIcon={<DeleteIcon />}
-              size="small"
-            >
+            <Button onClick={() => removeTask(todo)} color="secondary" startIcon={<DeleteIcon />} size="small">
               Delete
             </Button>
           </CardActions>
