@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { List, Button, Checkbox, Input, Card, CardContent, CardActions, Typography } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { List } from '@material-ui/core';
 
 import { ActionType } from '@app/types/actionTypes';
 import { Todo, AppState } from '@app/types/tasksTypes';
 import { useDispatch, useSelector } from 'react-redux';
+import TaskItem from '@app/components/TaskItem';
 
 const TasksList: FC = () => {
   const dispatch = useDispatch();
@@ -27,47 +27,26 @@ const TasksList: FC = () => {
   };
 
   const toggleEditTask = (task: Todo): void => {
-    if (task.isDone) {
-      return;
-    } else {
+    if (!task.isDone) {
       dispatch({ type: ActionType.EDIT, payload: task });
+      if (task.isEdit) {
+        dispatch({ type: ActionType.UPDATE, payload: task });
+      }
+    } else {
+      return;
     }
   };
 
   return (
     <List>
       {state.todos.map((todo) => (
-        <Card key={todo.id}>
-          <CardContent style={{ opacity: todo.isDone ? '0.5' : '1' }}>
-            {todo.isEdit ? (
-              <Input
-                type="text"
-                value={todo.name}
-                color="primary"
-                onChange={(event) => changeEditedTask(event, todo)}
-                onBlur={() => toggleEditTask(todo)}
-              />
-            ) : (
-              <Typography
-                gutterBottom
-                variant="h5"
-                onClick={() => toggleEditTask(todo)}
-                style={{ textDecoration: todo.isDone ? 'line-through' : 'none' }}
-              >
-                {todo.name}
-              </Typography>
-            )}
-            <Typography gutterBottom variant="body2">
-              {todo.date}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Checkbox onChange={() => toggleCompleteTask(todo)} checked={todo.isDone} color="primary" />
-            <Button onClick={() => removeTask(todo)} color="secondary" startIcon={<DeleteIcon />} size="small">
-              Delete
-            </Button>
-          </CardActions>
-        </Card>
+        <TaskItem
+          todo={todo}
+          changeEditedTask={changeEditedTask}
+          toggleEditTask={toggleEditTask}
+          toggleCompleteTask={toggleCompleteTask}
+          removeTask={removeTask}
+        />
       ))}
     </List>
   );

@@ -1,7 +1,7 @@
 import { taskReducer } from '@app/reducers/taskReducer';
 import { Action, ActionType } from '@app/types/actionTypes';
 import { Todo } from '@app/types/tasksTypes';
-import { formatDate } from '../../services/dateHelper';
+import { formatDate } from '../../../services/dateHelper';
 
 describe('Reducer should: ', () => {
   const initialState = [
@@ -39,6 +39,7 @@ describe('Reducer should: ', () => {
       isEdit: true,
     });
   });
+
   it('complete task', () => {
     const action: Action = {
       type: ActionType.TOGGLE,
@@ -50,6 +51,7 @@ describe('Reducer should: ', () => {
       isDone: true,
     });
   });
+
   it('change task name', () => {
     const task = { ...todo };
     task.name = 'done';
@@ -63,6 +65,7 @@ describe('Reducer should: ', () => {
       name: 'done',
     });
   });
+
   it('remove task', () => {
     const action: Action = {
       type: ActionType.REMOVE,
@@ -71,6 +74,7 @@ describe('Reducer should: ', () => {
 
     expect(taskReducer(initialState, action).length).toEqual(initialState.length - 1);
   });
+
   it('remove all tasks', () => {
     const action: Action = {
       type: ActionType.DELETE_ALL,

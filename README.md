@@ -13,6 +13,8 @@
 3. Написать unit тесты для реализованных в задаче компонентов
 4. Предусмотреть возможность просмотра test coverage (html вид) и bundle size
 
+[DEMO ONLINE](https://stoic-golick-0e3ea7.netlify.app/)
+
 Start your local server use:
 ```
 npm run dev

@@ -10,7 +10,7 @@
   "transform": {
     "^.+\\.(ts|tsx)?$": "babel-jest"
   },
-  "testRegex": "(/tests/.*\\.(test|spec))\\.(ts)$",
+  "testRegex": "(/tests/.*\\.(test|spec))\\.(ts|tsx)$",
   "moduleNameMapper": {
     "^@app/(.*)$": "<rootDir>/../src/$1"
   },

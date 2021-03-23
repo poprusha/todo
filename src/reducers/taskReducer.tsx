@@ -17,11 +17,13 @@ let initialState: Todo[];
   return initialState;
 })();
 
+const sortTasks = (todos: Todo[]): Todo[] =>
+  todos.sort((todo1, todo2) => (new Date(todo1.date) > new Date(todo2.date) ? -1 : 1));
+
 export const taskReducer = (todos: Todo[] = initialState, action: Action): Todo[] => {
   switch (action.type) {
     case ActionType.ADD: {
       return [
-        ...todos,
         {
           id: v4(),
           name: action.payload,
@@ -29,6 +31,7 @@ export const taskReducer = (todos: Todo[] = initialState, action: Action): Todo[
           isEdit: false,
           date: formatDate(new Date()),
         },
+        ...todos,
       ];
     }
     case ActionType.REMOVE: {
@@ -40,6 +43,9 @@ export const taskReducer = (todos: Todo[] = initialState, action: Action): Todo[
           task.id !== action.payload.id ? task : { ...task, isEdit: !task.isEdit, date: formatDate(new Date()) }
         ),
       ];
+    }
+    case ActionType.UPDATE: {
+      return sortTasks(todos);
     }
     case ActionType.TOGGLE: {
       return [...todos.map((task) => (task.id !== action.payload.id ? task : { ...task, isDone: !task.isDone }))];

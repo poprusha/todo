@@ -7,6 +7,7 @@ export enum ActionType {
   EDIT = 'EDIT',
   CHANGE_NAME = 'CHANGE_NAME',
   DELETE_ALL = 'DELETE_ALL',
+  UPDATE = 'UPDATE',
 }
 
 export type ActionStringPayload = {
@@ -15,7 +16,13 @@ export type ActionStringPayload = {
 };
 
 export type ActionObjectPayload = {
-  type: ActionType.REMOVE | ActionType.TOGGLE | ActionType.EDIT | ActionType.CHANGE_NAME | ActionType.DELETE_ALL;
+  type:
+    | ActionType.REMOVE
+    | ActionType.TOGGLE
+    | ActionType.EDIT
+    | ActionType.CHANGE_NAME
+    | ActionType.DELETE_ALL
+    | ActionType.UPDATE;
   payload: Todo;
 };
 
