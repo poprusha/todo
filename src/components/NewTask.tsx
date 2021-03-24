@@ -13,8 +13,8 @@ const NewTask: FC = () => {
   };
 
   const addTask = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
     if (newTask.trim().length > 0) {
-      event.preventDefault();
       dispatch({ type: ActionType.ADD, payload: newTask });
       updateInput();
     } else {

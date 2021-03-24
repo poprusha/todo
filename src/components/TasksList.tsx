@@ -4,7 +4,7 @@ import { List } from '@material-ui/core';
 import { ActionType } from '@app/types/actionTypes';
 import { Todo, AppState } from '@app/types/tasksTypes';
 import { useDispatch, useSelector } from 'react-redux';
-import TaskItem from '@app/components/TaskItem';
+import TaskItem from '@app/components/tasks/TaskItem';
 
 const TasksList: FC = () => {
   const dispatch = useDispatch();
@@ -41,6 +41,7 @@ const TasksList: FC = () => {
     <List>
       {state.todos.map((todo) => (
         <TaskItem
+          key={todo.id}
           todo={todo}
           changeEditedTask={changeEditedTask}
           toggleEditTask={toggleEditTask}

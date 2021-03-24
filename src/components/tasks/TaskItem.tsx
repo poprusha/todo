@@ -13,10 +13,11 @@ export interface ITodoItemProps {
 
 const TaskItem: FC<ITodoItemProps> = ({ todo, changeEditedTask, toggleEditTask, toggleCompleteTask, removeTask }) => {
   return (
-    <Card key={todo.id} style={{ margin: '10px 0' }}>
+    <Card style={{ margin: '10px 0' }}>
       <CardContent style={{ opacity: todo.isDone ? '0.5' : '1' }}>
         {todo.isEdit ? (
           <Input
+            data-testid="todo-input"
             type="text"
             value={todo.name}
             color="primary"
@@ -25,6 +26,7 @@ const TaskItem: FC<ITodoItemProps> = ({ todo, changeEditedTask, toggleEditTask, 
           />
         ) : (
           <Typography
+            data-testid="todo-text"
             gutterBottom
             variant="h5"
             onClick={() => toggleEditTask(todo)}
@@ -38,8 +40,19 @@ const TaskItem: FC<ITodoItemProps> = ({ todo, changeEditedTask, toggleEditTask, 
         </Typography>
       </CardContent>
       <CardActions>
-        <Checkbox onChange={() => toggleCompleteTask(todo)} checked={todo.isDone} color="primary" />
-        <Button onClick={() => removeTask(todo)} color="secondary" startIcon={<DeleteIcon />} size="small">
+        <Checkbox
+          data-testid="todo-checkbox"
+          onChange={() => toggleCompleteTask(todo)}
+          checked={todo.isDone}
+          color="primary"
+        />
+        <Button
+          data-testid="todo-remove"
+          onClick={() => removeTask(todo)}
+          color="secondary"
+          startIcon={<DeleteIcon />}
+          size="small"
+        >
           Delete
         </Button>
       </CardActions>
