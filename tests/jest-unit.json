@@ -1,0 +1,22 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "jsx",
+    "json",
+    "ts",
+    "tsx"
+  ],
+  "rootDir": ".",
+  "transform": {
+    "^.+\\.(ts|tsx)?$": "babel-jest"
+  },
+  "testRegex": "(/tests/.*\\.(test|spec))\\.(ts|tsx)$",
+  "moduleNameMapper": {
+    "^@app/(.*)$": "<rootDir>/../src/$1"
+  },
+  "collectCoverage": true,
+  "coverageReporters" : [
+    "html"
+  ],
+  "coverageDirectory" : "<rootDir>/../reports"
+}
